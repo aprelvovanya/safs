@@ -1,0 +1,25 @@
+{
+  "name": "safs",
+  "version": "0.0.1",
+  "description": "Simple ajax form submission",
+  "main": "safs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aprelvovanya/safs.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "ajax",
+    "submit form"
+  ],
+  "author": "Vladimir Ryzhov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aprelvovanya/safs/issues"
+  },
+  "homepage": "https://github.com/aprelvovanya/safs#readme"
+}
