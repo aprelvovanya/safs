@@ -60,14 +60,3 @@ document.addEventListener('submit', function(e) {
 		el.dispatchEvent(safsEvent);
 	}
 });
-
-(function($) {
-	$(function() {
-		$('form').on('safs-progress', function(data) {
-			console.log(data.detail);
-		});
-		$('form').on('safs-success', function(data) {
-			console.log(data.detail);
-		});
-	});
-})(jQuery);
