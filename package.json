@@ -1,6 +1,6 @@
 {
   "name": "safs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple ajax form submission",
   "main": "safs.js",
   "scripts": {
