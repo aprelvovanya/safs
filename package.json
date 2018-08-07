@@ -1,8 +1,8 @@
 {
   "name": "safs",
-  "version": "0.0.2",
-  "description": "Simple ajax form submission",
-  "main": "safs.js",
+  "version": "0.0.3",
+  "description": "Simple ajax form submit",
+  "main": "safs.jquery.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,12 +14,16 @@
     "js",
     "javascript",
     "ajax",
-    "submit form"
+    "submit form",
+    "jquery"
   ],
   "author": "Vladimir Ryzhov",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/aprelvovanya/safs/issues"
   },
-  "homepage": "https://github.com/aprelvovanya/safs#readme"
+  "homepage": "https://github.com/aprelvovanya/safs#readme",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
 }

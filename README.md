@@ -2,9 +2,10 @@
 
 Простая отправка формы.
 
-1. Подключить файл safs.js
-2. Форме добавить атрибут `data-safs`
-3. Всё готово.
+1. Подключить jquery 3 и выше
+2. Подключить файл safs.jquery.js
+3. Форме добавить атрибут `data-safs`
+4. Всё готово.
 
 ## action
 куда слать запрос, если не указан будет использоваться ссылка на текущую страницу
@@ -22,7 +23,7 @@ get или post
 
 Если у формы установлен атребут `data-safs-success-reset` - при успешной отправке формы - форма будет сброшена
 
-## 
+##
 
 При отправке запроса форме добавляется атрибут `data-safs-during`
 
@@ -39,30 +40,6 @@ get или post
 
 ## Пример обработки событий
 
-### plain js
-
-```
-document.querySelector('form').addEventListener('safs-success', function(data) {
-  console.log(data.detail.responseText);// - ответ сервера
-  console.log(data.detail.status);// - код ответа сервера
-});
-```
-
-```
-document.querySelector('form').addEventListener('safs-error', function(data) {
-  console.log(data.detail.responseText);// - ответ сервера
-  console.log(data.detail.status);// - код ответа сервера
-});
-```
-
-```
-document.querySelector('form').addEventListener('safs-progress', function(data) {
-  console.log(data.detail);// - процент загрузки файлов
-});
-```
-
-### jQuery
- 
 ```
 $('form').on('safs-success', function(data) {
   console.log(data.detail.responseText);// - ответ сервера
