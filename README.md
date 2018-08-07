@@ -25,6 +25,10 @@ get или post
 
 ##
 
+Если ответ в формате JSON и есть свойство `location` - произойдет редирект
+
+##
+
 При отправке запроса форме добавляется атрибут `data-safs-during`
 
 ## Event
@@ -41,21 +45,21 @@ get или post
 ## Пример обработки событий
 
 ```
-$('form').on('safs-success', function(data) {
-  console.log(data.detail.responseText);// - ответ сервера
-  console.log(data.detail.status);// - код ответа сервера
+$('form').on('safs-success', function(el, data) {
+  console.log(data.responseText);// - ответ сервера
+  console.log(data.status);// - код ответа сервера
 });
 ```
 
 ```
-$('form').on('safs-error', function(data) {
-  console.log(data.detail.responseText);// - ответ сервера
-  console.log(data.detail.status);// - код ответа сервера
+$('form').on('safs-error', function(el, data) {
+  console.log(data.responseText);// - ответ сервера
+  console.log(data.status);// - код ответа сервера
 });
 ```
 
 ```
-$('form').on('safs-progress', function(data) {
-  console.log(data.detail);// - процент загрузки файлов
+$('form').on('safs-progress', function(el, data) {
+  console.log(data);// - процент загрузки файлов
 });
 ```
