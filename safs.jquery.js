@@ -37,7 +37,7 @@
 
           jqXHR.upload.addEventListener('progress', function(e) {
             if (e.lengthComputable) {
-              form.trigger('safs-progress', [Math.round((e.loaded * 100) / e.total)]);
+              form.trigger('safs-upload-progress', [Math.round((e.loaded * 100) / e.total)]);
             }
           }, false);
           return jqXHR;
@@ -56,12 +56,12 @@
             window.location = jqXHR.responseText.location;
           }
         }
-        form.trigger('safs-success', [jqXHR]);
+        form.trigger('safs-success', [jqXHR.responseText]);
         if (form.is('[data-safs-success-reset]')) {
           form[0].reset();
         }
       }).fail(function(jqXHR) {
-        form.trigger('safs-error', [jqXHR]);
+        form.trigger('safs-error', [jqXHR.responseText]);
       }).always(function() {
         form.attr('data-safs-during', null);
       });

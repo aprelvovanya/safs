@@ -38,28 +38,26 @@ get или post
 
 `safs-error` - отшибка отправки
 
-Событиям передаются результаты запроса в свойстве `detail` в виде XHR
+Событиям передаются ответ сервера
 
-`safs-progress` - прогресс отправки формы, можно использовать при отправке файлов
+`safs-upload-progress` - прогресс отправки формы, можно использовать при отправке файлов
 
 ## Пример обработки событий
 
 ```
 $('form').on('safs-success', function(el, data) {
-  console.log(data.responseText);// - ответ сервера
-  console.log(data.status);// - код ответа сервера
+  console.log(data);// - ответ сервера
 });
 ```
 
 ```
 $('form').on('safs-error', function(el, data) {
-  console.log(data.responseText);// - ответ сервера
-  console.log(data.status);// - код ответа сервера
+  console.log(data);// - ответ сервера
 });
 ```
 
 ```
-$('form').on('safs-progress', function(el, data) {
+$('form').on('safs-upload-progress', function(el, data) {
   console.log(data);// - процент загрузки файлов
 });
 ```
