@@ -1,6 +1,6 @@
 {
   "name": "safs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple ajax form submit",
   "main": "safs.jquery.js",
   "scripts": {
@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/aprelvovanya/safs#readme",
   "dependencies": {
-    "jquery": "^3.3.1"
+    "jquery": ">=3.0.0"
   }
 }
