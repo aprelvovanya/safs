@@ -1,27 +1,35 @@
-(function($) {
-  $(function() {
-    $(document).on('submit', '[data-safs]', function(e) {
+(function ($) {
+  $(function () {
+    $(document).on('submit', '[data-safs]', function (e) {
       e.preventDefault();
-      var form = $(this);
+      var safsForm = $(this);
+      var safsBody = $('body');
 
-      var action = form.attr('action');
+      var action = safsForm.attr('action');
       action = action !== undefined ? action : window.location.href;
 
-      var method = form.attr('method');
+      var method = safsForm.attr('method');
       method = method !== undefined ? ['get', 'post'].indexOf(method.toLowerCase()) >= 0 ? method.toLowerCase() : 'get' : 'get';
 
-      if (form.is('.false') || form.is('[data-safs-during]'))
+      var successBody = safsForm.attr('data-safs-success-body');
+      successBody = successBody !== undefined ? successBody : '';
+
+      var successForm = safsForm.attr('data-safs-success-form');
+      successForm = successForm !== undefined ? successForm : '';
+
+      if (safsForm.is('.false') || safsForm.is('[data-safs-during]')) {
         return false;
+      }
 
-      form.attr('data-safs-during', true);
+      safsForm.attr('data-safs-during', true);
 
-      var isFiles = !!form.find('[type=file]').length;
+      var isFiles = !!safsForm.find('[type=file]').length;
       var formData;
       if (isFiles) {
         method = 'post';
-        formData = new FormData(form[0]);
+        formData = new FormData(safsForm[0]);
       } else {
-        formData = form.serializeArray();
+        formData = safsForm.serializeArray();
       }
 
       $.ajax({
@@ -32,17 +40,17 @@
         cache: false,
         contentType: false,
         processData: !isFiles,
-        xhr: function() {
+        xhr: function () {
           var jqXHR = window.XMLHttpRequest ? new window.XMLHttpRequest() : new window.ActiveXObject("Microsoft.XMLHTTP");
 
-          jqXHR.upload.addEventListener('progress', function(e) {
+          jqXHR.upload.addEventListener('progress', function (e) {
             if (e.lengthComputable) {
-              form.trigger('safs-upload-progress', [Math.round((e.loaded * 100) / e.total)]);
+              safsForm.trigger('safs-upload-progress', [Math.round((e.loaded * 100) / e.total)]);
             }
           }, false);
           return jqXHR;
         }
-      }).done(function(response, textStatus, jqXHR) {
+      }).done(function (response, textStatus, jqXHR) {
         var isJSON = true;
         try {
           var r = $.parseJSON(jqXHR.responseText);
@@ -52,19 +60,36 @@
         if (isJSON) {
           jqXHR.responseText = r;
           if (jqXHR.responseText.location !== undefined) {
-            form.addClass('false');
+            safsForm.addClass('false');
             window.location = jqXHR.responseText.location;
           }
         }
-        form.trigger('safs-success', [jqXHR.responseText]);
-        if (form.is('[data-safs-success-reset]')) {
-          form[0].reset();
+        safsForm.trigger('safs-success', [jqXHR.responseText]);
+        dataTr(safsForm, successForm, jqXHR.responseText);
+        if (safsBody.length) {
+          dataTr(safsBody, successBody, jqXHR.responseText);
         }
-      }).fail(function(jqXHR) {
-        form.trigger('safs-error', [jqXHR.responseText]);
-      }).always(function() {
-        form.attr('data-safs-during', null);
+        if (safsForm.is('[data-safs-success-reset]')) {
+          safsForm[0].reset();
+        }
+      }).fail(function (jqXHR) {
+        safsForm.trigger('safs-error', [jqXHR.responseText]);
+      }).always(function () {
+        safsForm.attr('data-safs-during', null);
       });
     });
+
+    var dataTr = function (target, tr, data) {
+      if (tr.length) {
+        tr = tr.split(' ');
+        if (tr.length) {
+          tr.forEach(function (t) {
+            if (t) {
+              target.trigger(t, [data]);
+            }
+          });
+        }
+      }
+    };
   });
 })(jQuery);
