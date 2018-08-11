@@ -1,6 +1,6 @@
 {
   "name": "safs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple ajax form submit",
   "main": "safs.jquery.js",
   "scripts": {
@@ -25,5 +25,10 @@
   "homepage": "https://github.com/aprelvovanya/safs#readme",
   "dependencies": {
     "jquery": ">=3.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.1"
   }
 }

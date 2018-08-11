@@ -12,7 +12,7 @@ jQuery >= 3
 
 ```html
 <script src="/path/to/jquery.js"></script>
-<script src="/path/to/safs.jquery.js"></script>
+<script src="/path/to/safs.jquery.min.js"></script>
 ```
 
 ## Простой пример
