@@ -31,6 +31,10 @@ jQuery >= 3
 
 подключение обработчика
 
+`data-safs-xhr`
+
+передавать триггерам полный XHR, если атрибут не указан - передается только responseText
+
 `action`
 
 [url] - куда слать запрос, если не указан будет использоваться ссылка на текущую страницу
@@ -51,7 +55,7 @@ jQuery >= 3
 
 `data-safs-success-form`
 
-список событий разделенных пробелом которые буду выполнены на тег `body` или `саму форму` в случае успешной отправке формы, событию передаётся ответ сервера `responseText`
+список событий разделенных пробелом которые буду выполнены на тег `body` или `саму форму` в случае успешной отправке формы, событию передаётся ответ сервера `responseText` или полный `XHR` в зависимости от наличия атрибута `data-safs-xhr`
 
 ```html
 <form data-safs data-safs-success-body="body-event-1 body-event-2 ...">
@@ -59,14 +63,14 @@ jQuery >= 3
 
 ```js
 $('body').on('body-event-1', function(el, data) {
-    // ответ сервера responseText
+    // ответ сервера responseText или полный XHR
     console.log(data);
 });
 ```
 
 ```js
 $('body').on('body-event-2', function(el, data) {
-    // ответ сервера responseText
+    // ответ сервера responseText или полный XHR
     console.log(data);
 });
 ```
@@ -77,14 +81,14 @@ $('body').on('body-event-2', function(el, data) {
 
 ```js
 $('form-selector').on('form-event-1', function(el, data) {
-    // ответ сервера responseText
+    // ответ сервера responseText или полный XHR
     console.log(data);
 });
 ```
 
 ```js
 $('form-selector').on('form-event-2', function(el, data) {
-    // ответ сервера responseText
+    // ответ сервера responseText или полный XHR
     console.log(data);
 });
 ```
@@ -110,7 +114,7 @@ $('form').on('safs-success', function(el, data) {
 
 `safs-error`
 
-отшибка отправки, срабатывает 1 раз
+ошибка отправки, срабатывает 1 раз
 
 ```js
 $('form').on('safs-error', function(el, data) {

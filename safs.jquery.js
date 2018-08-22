@@ -11,6 +11,8 @@
       var method = safsForm.attr('method');
       method = method !== undefined ? ['get', 'post'].indexOf(method.toLowerCase()) >= 0 ? method.toLowerCase() : 'get' : 'get';
 
+      var xhr = safsForm.is('[data-safs-xhr]');
+
       var successBody = safsForm.attr('data-safs-success-body');
       successBody = successBody !== undefined ? successBody : '';
 
@@ -64,16 +66,16 @@
             window.location = jqXHR.responseText.location;
           }
         }
-        safsForm.trigger('safs-success', [jqXHR.responseText]);
-        dataTr(safsForm, successForm, jqXHR.responseText);
+        safsForm.trigger('safs-success', [xhr ? jqXHR : jqXHR.responseText]);
+        dataTr(safsForm, successForm, xhr ? jqXHR : jqXHR.responseText);
         if (safsBody.length) {
-          dataTr(safsBody, successBody, jqXHR.responseText);
+          dataTr(safsBody, successBody, xhr ? jqXHR : jqXHR.responseText);
         }
         if (safsForm.is('[data-safs-success-reset]')) {
           safsForm[0].reset();
         }
       }).fail(function (jqXHR) {
-        safsForm.trigger('safs-error', [jqXHR.responseText]);
+        safsForm.trigger('safs-error', [xhr ? jqXHR : jqXHR.responseText]);
       }).always(function () {
         safsForm.attr('data-safs-during', null);
       });
